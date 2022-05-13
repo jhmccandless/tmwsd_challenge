@@ -10,10 +10,30 @@ function tmwsd_reducer(state = initialState, action) {
   console.log(state);
   switch (action.type) {
     case "ADD_MESSAGE":
-      const newMessages = [...state.messages, {}];
+      const newMessages = [
+        ...state.messages,
+        {
+          id: action.data[3],
+          title: action.data[0],
+          message: action.data[1],
+        },
+      ];
       return {
         ...state,
         messages: newMessages,
+      };
+    case "DELETE_MESSAGE":
+      let delMessage = state.messages.find(
+        ({ id }) => id === Number(action.data)
+      );
+      let arrToChange = [...state.messages];
+      const newMessagesDel = arrToChange.splice(
+        state.messages.indexOf(delMessage),
+        1
+      );
+      return {
+        ...state,
+        messages: arrToChange,
       };
     default:
       return state;
