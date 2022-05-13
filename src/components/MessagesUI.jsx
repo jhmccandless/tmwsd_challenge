@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function MessagesUI({ messages }) {
+function MessagesUI({ messages, deleteMessage, fetchAPI }) {
   let navigate = useNavigate();
   const [messageList, setMessageList] = useState([]);
 
@@ -38,6 +39,7 @@ function MessagesUI({ messages }) {
     }
     selectRightElement();
   }
+
   useEffect(() => {
     let mounted = true;
     const fetchData = async () => {

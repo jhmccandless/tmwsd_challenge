@@ -15,8 +15,10 @@ function InputFormUI({ addMessage }) {
         console.log(res);
         console.log(res.data);
       });
+
     addMessage(messageDetails);
   };
+
   return (
     <>
       <h2>Message You'd Like To Delete:</h2>

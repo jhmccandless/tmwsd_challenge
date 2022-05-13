@@ -1,6 +1,6 @@
 import MessagesUI from "../components/MessagesUI";
 import { connect } from "react-redux";
-import { deleteMessageAction } from "../action";
+import { deleteMessageAction, fetchAPIDataAction } from "../action";
 
 function mapStateToProps(state) {
   return {

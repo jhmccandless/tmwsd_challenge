@@ -8,6 +8,7 @@ function DeletedMessagePageUI({ messages }) {
 
   const title = localStorage.getItem(0);
   const message = localStorage.getItem(1);
+  const deleteID = localStorage.getItem(2);
 
   function onClick() {
     navigate("/");

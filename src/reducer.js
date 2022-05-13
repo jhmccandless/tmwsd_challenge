@@ -1,7 +1,7 @@
 const initialState = {
   messages: [
-    { id: 77, title: "title1", message: "message1" },
-    { id: 78, title: "title2", message: "message2" },
+    // { id: 77, title: "title1", message: "message1" },
+    // { id: 78, title: "title2", message: "message2" },
   ],
 };
 
@@ -34,6 +34,10 @@ function tmwsd_reducer(state = initialState, action) {
       return {
         ...state,
         messages: arrToChange,
+      };
+    case "API_FETCH":
+      return {
+        messages: action.data,
       };
     default:
       return state;
