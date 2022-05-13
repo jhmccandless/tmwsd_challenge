@@ -2,6 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 function InputFormUI({ addMessage }) {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    let messageDetails = [];
+    for (const detail of event.target) {
+      messageDetails.push(detail.value);
+    }
+    console.log(messageDetails);
+    addMessage(messageDetails);
+  };
   return (
     <>
       <h2>Message You'd Like To Delete:</h2>
