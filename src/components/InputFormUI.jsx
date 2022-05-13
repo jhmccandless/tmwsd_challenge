@@ -9,6 +9,12 @@ function InputFormUI({ addMessage }) {
       messageDetails.push(detail.value);
     }
     console.log(messageDetails);
+    axios
+      .post(`http://localhost:3785/messages_db`, { messageDetails })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      });
     addMessage(messageDetails);
   };
   return (

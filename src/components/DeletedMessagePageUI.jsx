@@ -13,6 +13,10 @@ function DeletedMessagePageUI({ messages }) {
     navigate("/");
   }
 
+  useEffect(() => {
+    axios.delete(`http://localhost:3785/messages_delete:${deleteID}`);
+  }, []);
+
   return (
     <>
       <header className="App-header">

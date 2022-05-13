@@ -38,6 +38,30 @@ function MessagesUI({ messages }) {
     }
     selectRightElement();
   }
+  useEffect(() => {
+    let mounted = true;
+    const fetchData = async () => {
+      const data = await fetch("http://localhost:3785/");
+      const json = await data.json();
+      return json;
+    };
+    fetchData().then((messageList) => {
+      if (mounted) {
+        setMessageList(messageList);
+        let updatedMsgArr = [];
+        for (const el of messageList) {
+          updatedMsgArr.push({
+            id: el.id,
+            title: el.message_title,
+            message: el.message_body,
+          });
+        }
+        fetchAPI(updatedMsgArr);
+      }
+    });
+    return () => (mounted = false);
+  }, []);
+
   return (
     <>
       <div>
