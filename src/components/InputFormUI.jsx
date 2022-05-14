@@ -8,14 +8,7 @@ function InputFormUI({ addMessage }) {
     for (const detail of event.target) {
       messageDetails.push(detail.value);
     }
-    console.log(messageDetails);
-    axios
-      .post(`http://localhost:3785/messages_db`, { messageDetails })
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-      });
-
+    axios.post(`http://localhost:3785/messages_db`, { messageDetails });
     addMessage(messageDetails);
   };
 
@@ -43,7 +36,7 @@ function InputFormUI({ addMessage }) {
           // onChange={(e) => setKeywords(e.target.value)}
         ></input>
         <br />
-        <button type="submit">Update List</button>
+        <button type="submit">Add To List</button>
       </form>
     </>
   );

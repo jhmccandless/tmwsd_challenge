@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,8 +8,6 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
 
   function handleDeleteClick(event) {
     event.preventDefault();
-    console.log(event.target.children.length);
-    // console.log(event.target.parentElement.children);
     let realTarget;
     event.target.children.length
       ? (realTarget = event.target.children)
@@ -16,7 +15,6 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
     function htmlCollToArr(coll) {
       let arr = [];
       for (const el of coll) {
-        console.log(el);
         arr.push(el.innerHTML);
       }
       return arr;
@@ -31,7 +29,6 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
         navigate(`/message:${event.target.parentElement.id}`);
         deleteMessage(event.target.parentElement.id);
       } else {
-        console.log(event.target.id);
         localStorage.setItem(2, event.target.id);
         navigate(`/message:${event.target.id}`);
         deleteMessage(event.target.id);
@@ -42,16 +39,20 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
 
   useEffect(() => {
     let mounted = true;
-    const fetchData = async () => {
-      const data = await fetch("http://localhost:3785/");
-      const json = await data.json();
-      return json;
+    const fetchingMessages = async () => {
+      try {
+        const response = await axios.get("http://localhost:3785/");
+        const data = response.data;
+        return data;
+      } catch (error) {
+        console.error(error);
+      }
     };
-    fetchData().then((messageList) => {
+    fetchingMessages().then((data) => {
       if (mounted) {
-        setMessageList(messageList);
+        setMessageList(data);
         let updatedMsgArr = [];
-        for (const el of messageList) {
+        for (const el of data) {
           updatedMsgArr.push({
             id: el.id,
             title: el.message_title,
@@ -61,6 +62,7 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
         fetchAPI(updatedMsgArr);
       }
     });
+
     return () => (mounted = false);
   }, []);
 
@@ -68,7 +70,6 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
     <>
       <div>
         <h2>Delete Messages Below!</h2>
-
         {messages.map((el, index) => (
           <div
             onClick={(e) => {
@@ -81,13 +82,6 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
             <p>{el.message}</p>
           </div>
         ))}
-
-        {/* {messageList.map((el, index) => (
-          <div key={index}>
-            <h4>{el.message_title}</h4>
-            <p>{el.message_body}</p>
-          </div>
-        ))} */}
       </div>
     </>
   );
