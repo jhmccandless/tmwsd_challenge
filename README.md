@@ -29,3 +29,16 @@ Bonus points for making it look pretty :sparkles:
 ## Step 3: Submit
 
 When you are finished, [deploy your app to Heroku](https://devcenter.heroku.com/articles/git) and send an email with a link to the Heroku app and a link to your fork. Thanks!
+
+DEV NOTES
+This is by no means a polished finished app. With the time restraints I have completed Step 2 though I know this small application needs work. See some notes below:
+
+1.  Need to put something in for when the list is empty.
+2.  making the input boxes bigger to see more text at the same time.
+3.  make the character limit larger for the message input.
+4.  obvious that visuals need some work, but should be easier now that a general working has been completed
+5.  Pagenation or some sort of more organization to the message list would be a great input
+6.  Though the message deletes from the DB upon clicking on the message, I used local storage which means that the deleted message page may be refreshed without losing the message. This does not deviate from the request, though I could find this an issue in the future.
+7.  I would not want to delete any message in the future. I put a column in the DB to have the opportunity to not delete but request to hide a message via a boolean column. Keeping data is good, yea? though I know we are here to test knowledge.
+8.  I have tried unsuccessfully to deploy this on heroku. I have tried many times with another application using the same frameworks and DB types to no avail so I did not try here. I know I require a Procfile and such.
+9.  there a warning pointing to the reducer telling me a variable is not used used but declared. This is to mutate another variable in that block of code.

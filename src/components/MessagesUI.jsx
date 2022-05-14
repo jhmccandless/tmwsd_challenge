@@ -8,6 +8,7 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
 
   function handleDeleteClick(event) {
     event.preventDefault();
+    // this set of code for getting the right ID when clicking on the div or the writing in the div so they point to the same ID of the main div recieved from the backend
     let realTarget;
     event.target.children.length
       ? (realTarget = event.target.children)
@@ -64,7 +65,7 @@ function MessagesUI({ messages, deleteMessage, fetchAPI }) {
     });
 
     return () => (mounted = false);
-  }, []);
+  }, [fetchAPI, messageList]);
 
   return (
     <>

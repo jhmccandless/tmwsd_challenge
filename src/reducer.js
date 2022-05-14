@@ -1,8 +1,5 @@
 const initialState = {
-  messages: [
-    // { id: 77, title: "title1", message: "message1" },
-    // { id: 78, title: "title2", message: "message2" },
-  ],
+  messages: [],
 };
 
 function tmwsd_reducer(state = initialState, action) {

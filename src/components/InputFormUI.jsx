@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 
 function InputFormUI({ addMessage }) {
@@ -18,13 +18,7 @@ function InputFormUI({ addMessage }) {
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <br />
-        <input
-          name="title"
-          defaultValue={"Message Title"}
-          type="text"
-          // value={keywords}
-          // onChange={(e) => setKeywords(e.target.value)}
-        ></input>
+        <input name="title" defaultValue={"Message Title"} type="text"></input>
         <br />
         <label htmlFor="message">Message</label>
         <br />
@@ -32,8 +26,6 @@ function InputFormUI({ addMessage }) {
           name="message"
           defaultValue={"this is a message to be deleted"}
           type="text"
-          // value={keywords}
-          // onChange={(e) => setKeywords(e.target.value)}
         ></input>
         <br />
         <button type="submit">Add To List</button>

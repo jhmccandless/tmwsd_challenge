@@ -13,7 +13,6 @@ export function deleteMessageAction(data) {
 }
 
 export function fetchAPIDataAction(data) {
-  // console.log("action", data);
   return {
     type: "API_FETCH",
     data,
